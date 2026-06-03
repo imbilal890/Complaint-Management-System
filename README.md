@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
@@ -62,3 +63,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+=======
+# cms
+Complaint Management System (CMS) is a web-based application built with HTML, CSS, Bootstrap, PHP, and MySQL. It allows users to submit and track complaints while admins manage and resolve them through a dashboard, improving communication, transparency, and efficiency between users and management.
+>>>>>>> 06197b6f0fe316421b3b203978b86ab397c2d2f6
