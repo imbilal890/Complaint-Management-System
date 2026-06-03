@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f4f7fb;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            height: 100vh;
+            background: #0d6efd;
+            position: fixed;
+            top: 0;
+            left: 0;
+            color: white;
+            padding-top: 20px;
+        }
+
+        .sidebar h4 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main */
+        .main {
+            margin-left: 230px;
+            padding: 20px;
+        }
+
+        /* Cards */
+        .card-box {
+            transition: 0.2s;
+        }
+
+        .card-box:hover {
+            transform: scale(1.02);
+        }
+
+        /* Table */
+        table {
+            background: white;
+        }
+
+        .badge {
+            padding: 6px;
+        }
+
+       
+
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h4>🏡 Admin</h4>
+        <a href="#">Dashboard</a>
+        <a href="#">Complaints</a>
+        <a href="#">Pending</a>
+        <a href="#">Resolved</a>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <!-- DASHBOARD CARDS -->
+        <div class="row g-3">
+
+            <div class="col-md-3">
+                <div class="card p-3 text-center shadow card-box">
+                    <h6>Total</h6>
+                    <h4 id="total">3</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-3 text-center shadow card-box">
+                    <h6>Pending</h6>
+                    <h4 id="pending">1</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-3 text-center shadow card-box">
+                    <h6>In Progress</h6>
+                    <h4 id="progress">1</h4>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card p-3 text-center shadow card-box">
+                    <h6>Resolved</h6>
+                    <h4 id="resolved">1</h4>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TABLE -->
+        <div class="card mt-4 p-3 shadow">
+            <h5>📋 Complaint List</h5>
+
+            <table class="table mt-3">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Complaint</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tableBody">
+
+                    <tr>
+                        <td>CMP1001</td>
+                        <td>Ali Khan</td>
+                        <td>Water Supply Issue</td>
+                        <td><span class="badge bg-warning">Pending</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1002</td>
+                        <td>Ayyan Ahmed</td>
+                        <td>Electricity Issue</td>
+                        <td><span class="badge bg-primary">In Progress</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1003</td>
+                        <td>Mustafa</td>
+                        <td>Sanitation & Waste Management</td>
+                        <td><span class="badge bg-success">Resolved</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1004</td>
+                        <td>Fatima Noor</td>
+                        <td>Sanitation & Waste Management</td>
+                        <td><span class="badge bg-warning">Pending</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1005</td>
+                        <td>Tariq</td>
+                        <td>Street & Infrastructure Maintenance</td>
+                        <td><span class="badge bg-primary">In Progress</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1006</td>
+                        <td>Ayesha </td>
+                        <td>Drainage & Sewerage Problem</td>
+                        <td><span class="badge bg-success">Resolved</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1007</td>
+                        <td>Bilal </td>
+                        <td>Water Supply Issue</td>
+                        <td><span class="badge bg-warning">Pending</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1008</td>
+                        <td>Hamza Ali</td>
+                        <td>Parks & Public Facilities</td>
+                        <td><span class="badge bg-success">Resolved</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1009</td>
+                        <td>Zain Ahmed</td>
+                        <td>Electricity Issue</td>
+                        <td><span class="badge bg-primary">In Progress</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1010</td>
+                        <td>Mariam Khan</td>
+                        <td>Street & Infrastructure Maintenance</td>
+                        <td><span class="badge bg-warning">Pending</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1011</td>
+                        <td>Hassan Raza</td>
+                        <td>Internet & Communication Issue</td>
+                        <td><span class="badge bg-success">Resolved</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1012</td>
+                        <td>Iqra</td>
+                        <td>Drainage & Sewerage Problem</td>
+                        <td><span class="badge bg-primary">In Progress</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1013</td>
+                        <td>Danish Khan</td>
+                        <td>Water Supply Issue</td>
+                        <td><span class="badge bg-warning">Pending</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1014</td>
+                        <td>Laiba Noor</td>
+                        <td>Internet & Communication Issue</td>
+                        <td><span class="badge bg-success">Resolved</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1015</td>
+                        <td>Abdullah Ali</td>
+                        <td>Electricity Issue</td>
+                        <td><span class="badge bg-primary">In Progress</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1016</td>
+                        <td>Hira Ahmed</td>
+                        <td>Internet & Communication Issue</td>
+                        <td><span class="badge bg-warning">Pending</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1017</td>
+                        <td>Talha Raza</td>
+                        <td>Drainage & Sewerage Problem</td>
+                        <td><span class="badge bg-success">Resolved</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1018</td>
+                        <td>Hassan Khan</td>
+                        <td>Security & Safety Concern</td>
+                        <td><span class="badge bg-primary">In Progress</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1019</td>
+                        <td>Saad Ahmed</td>
+                        <td>Water Supply Issue</td>
+                        <td><span class="badge bg-warning">Pending</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>CMP1020</td>
+                        <td>Rabia Noor</td>
+                        <td>Security & Safety Concern</td>
+                        <td><span class="badge bg-success">Resolved</span></td>
+                        <td>
+                            <button class="btn btn-sm btn-primary"
+                                onclick="changeStatus(this,'progress')">Progress</button>
+                            <button class="btn btn-sm btn-success"
+                                onclick="changeStatus(this,'resolved')">Resolve</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteRow(this)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    <div class="d-flex justify-content-center align-items-center" style="height: 10vh;">
+    <a href="index.html" class="btn btn-primary px-4 py-1">
+        Back to Home
+    </a>
+</div>
+
+    <script>
+
+        function deleteRow(btn) {
+            let row = btn.parentElement.parentElement;
+            row.remove();
+            updateCounts();
+        }
+
+
+        function changeStatus(btn, status) {
+
+            let row = btn.parentElement.parentElement;
+            let statusCell = row.children[3];
+
+            if (status === "progress") {
+                statusCell.innerHTML = '<span class="badge bg-primary">In Progress</span>';
+            }
+            else if (status === "resolved") {
+                statusCell.innerHTML = '<span class="badge bg-success">Resolved</span>';
+            }
+
+            updateCounts();
+        }
+
+
+        function updateCounts() {
+
+            let rows = document.querySelectorAll("#tableBody tr");
+
+            let total = rows.length;
+            let pending = 0;
+            let progress = 0;
+            let resolved = 0;
+
+            rows.forEach(row => {
+                let status = row.children[3].innerText;
+
+                if (status.includes("Pending")) pending++;
+                else if (status.includes("Progress")) progress++;
+                else if (status.includes("Resolved")) resolved++;
+            });
+
+            document.getElementById("total").innerText = total;
+            document.getElementById("pending").innerText = pending;
+            document.getElementById("progress").innerText = progress;
+            document.getElementById("resolved").innerText = resolved;
+        }
+
+
+        updateCounts();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Issue</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #e3f2fd, #f8fbff);
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .section-title {
+            font-weight: 700;
+            color: #0d6efd;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 12px;
+            padding: 12px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 10px rgba(13, 110, 253, 0.3);
+        }
+
+        .btn-primary {
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.02);
+        }
+
+        .success-message {
+            display: none;
+        }
+
+        .header-box {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header-box h1 {
+            color: #0d6efd;
+            font-weight: bold;
+        }
+
+        .header-box p {
+            color: #6c757d;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container my-5">
+
+        <div class="header-box">
+            <h1>📝 Report an Issue</h1>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+
+                <div class="card shadow p-4">
+
+                    <h3 class="section-title text-center">
+                        Complaint Submission Form
+                    </h3>
+
+                    <form id="complaintForm">
+
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your full name">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" class="form-control" placeholder="Enter your email">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Residential Address</label>
+                            <input type="text" class="form-control" placeholder="House No, Street, Block">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Complaint Category</label>
+
+                            <select class="form-select">
+
+                                <option>Electricity Issue</option>
+                                <option>Water Supply Issue</option>
+                                <option>Street & Infrastructure Maintenance</option>
+                                <option>Sanitation & Waste Management</option>
+                                <option>Drainage & Sewerage Problem</option>
+                                <option>Traffic & Parking Issue</option>
+                                <option>Security & Safety Concern</option>
+                                <option>Parks & Public Facilities</option>
+                                <option>Housing & Construction Issue</option>
+                                <option>Internet & Communication Issue</option>
+                                <option>Other</option>
+
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Complaint Description</label>
+
+                            <textarea class="form-control" id="description" rows="5"
+                                placeholder="Describe your issue in detail"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            Submit Complaint
+                        </button>
+
+                        <div class="alert alert-success mt-3 success-message" id="successMsg">
+                            ✅ Complaint Submitted Successfully!
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center" style="height: 10vh;">
+        <a href="index.html" class="btn btn-primary px-4 py-1">
+            Back to Home
+        </a>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            document.getElementById("complaintForm").addEventListener("submit", function (e) {
+
+                e.preventDefault();
+
+                let name = document.getElementById("name").value;
+                let description = document.getElementById("description").value;
+
+                if (name.trim() === "" || description.trim() === "") {
+                    alert("Please fill in all required fields.");
+                    return;
+                }
+
+                document.getElementById("successMsg").style.display = "block";
+
+                this.reset();
+
+                setTimeout(function () {
+                    document.getElementById("successMsg").style.display = "none";
+                }, 3000);
+
+            });
+        </script>
+
+</body>
+
+</html>

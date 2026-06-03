@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f4f7fb;
+            font-family: Arial, sans-serif;
+        }
+
+        .section-title {
+            text-align: center;
+            font-weight: bold;
+            color: #0d6efd;
+            margin: 30px 0;
+        }
+
+        .faq-box {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .faq-question {
+            padding: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            background: #f8f9fa;
+        }
+
+        .faq-answer {
+            padding: 12px;
+            display: none;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container my-5">
+
+        <h3 class="section-title">❓ Frequently Asked Questions</h3>
+
+        <div class="faq-box">
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ('a1')">
+                    What is the Smart Neighborhood CMS?
+                </div>
+                <div class="faq-answer" id="a1">
+                    It is a system that allows citizens to report local issues and track their resolution online.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ('a2')">
+                    How can I submit a complaint?
+                </div>
+                <div class="faq-answer" id="a2">
+                    Go to the Report Issue page, fill the form, and submit your complaint.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ('a3')">
+                    How do I track my complaint?
+                </div>
+                <div class="faq-answer" id="a3">
+                    Enter your Complaint ID on the Track page to see status updates.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ('a4')">
+                    Who manages complaints?
+                </div>
+                <div class="faq-answer" id="a4">
+                    The admin panel manages all complaints and updates their status.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="d-flex justify-content-center align-items-center" style="height: 10vh;">
+        <a href="index.html" class="btn btn-primary px-4 py-1">
+            Back to Home
+        </a>
+
+        <script>
+            function toggleFAQ(id) {
+
+                let ans = document.getElementById(id);
+
+                if (ans.style.display === "block") {
+                    ans.style.display = "none";
+                } else {
+                    ans.style.display = "block";
+                }
+            }
+        </script>
+
+</body>
+
+</html>
