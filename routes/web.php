@@ -1,26 +1,32 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ComplaintController;
-use App\Http\Controllers\AdminController;
+use Illuminate\Http\Request;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
+Route::get('/admin/login', function () {
+    return view('admin.login');
+});
 
-// 🟢 USER SIDE
-Route::get('/complaint', [ComplaintController::class, 'create']);
-Route::post('/complaint/store', [ComplaintController::class, 'store']);
+Route::post('/admin/login', function (Request $request) {
 
-Route::get('/track', [ComplaintController::class, 'trackPage']);
-Route::post('/track', [ComplaintController::class, 'track']);
+    if ($request->email == "admin@gmail.com" && $request->password == "12345") {
 
-// 🟢 ADMIN DASHBOARD
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+        session(['login' => true]);
 
-// 🟢 ADMIN STATUS CONTROL (CMS FEATURE)
-Route::get('/admin/pending/{id}', [AdminController::class, 'setPending']);
-Route::get('/admin/progress/{id}', [AdminController::class, 'setProgress']);
-Route::get('/admin/resolved/{id}', [AdminController::class, 'setResolved']);
+        return redirect('/admin/dashboard'); // 👈 login ke baad panel open
+    }
+
+    return back();
+});
+
+Route::get('/admin/dashboard', function () {
+
+    if (!session('login')) {
+        return redirect('/admin/login'); // 👈 login zaroori hai
+    }
+
+    return view('admin.dashboard');
+});
+Route::get('/logout', function () {
+    session()->forget('login');
+    return redirect('/admin/login');
+});

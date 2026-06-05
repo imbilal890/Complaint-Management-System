@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login Page</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial;
+    background: linear-gradient(135deg, #0d6efd, #00c6ff);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.box{
+    width: 320px;
+    padding: 30px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    color: white;
+}
+.box h2{
+    margin-bottom: 20px;
+}
+
+/* Inputs */
+input{
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+}
+button{
+    width: 100%;
+    padding: 12px;
+    background: #ffffff;
+    color: #0d6efd;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+button:hover{
+    background: #0d6efd;
+    color: white;
+    border: 1px solid white;
+}
+small{
+    display:block;
+    margin-top:10px;
+    opacity:0.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>🔐 Admin Login</h2>
+
+    <input type="text" id="email" placeholder="Enter Email">
+    <input type="password" id="password" placeholder="Enter Password">
+
+    <button onclick="login()">Login</button>
+
+</div>
+
+<script>
+const users = [
+    {email:"admin@gmail.com", pass:"12345", page:"admin.html"},
+    {email:"staff@gmail.com", pass:"11111", page:"staff.html"}
+];
+
+function login(){
+
+    let email = document.getElementById("email").value;
+    let pass = document.getElementById("password").value;
+
+    let user = users.find(u => u.email === email && u.pass === pass);
+
+    if(user){
+        window.location.href = user.page;
+    }else{
+        alert("Invalid Login");
+    }
+}
+</script>
+
+</body>
+</html>
